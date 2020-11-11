@@ -1,0 +1,1 @@
+./functions/update.sh "$(pwd)" "$(pwd)/aliases.bash_aliases"

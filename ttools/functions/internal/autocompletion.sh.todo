@@ -1,0 +1,4 @@
+# should be part of install
+# /etc/bash_completion.d/<module / alias name>
+
+# add complete to .bash_completion

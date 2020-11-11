@@ -1,0 +1,24 @@
+info(){
+
+}
+
+findFunctions(){
+	echo (cd $TTOOLS_BASE_FOLDER; find $1functions | grep .sh$)
+}
+
+findModules(){
+	echo (cd $TTOOLS_BASE_FOLDER; find | grep module.info$)
+}
+
+getInfo(){
+	path=$1
+	
+	if [ -f "$path" ]; then
+		if grep -q "info()" "$path"; then
+			. $path
+			echo info
+		fi
+	fi
+	
+	echo "-"
+}

@@ -1,0 +1,2 @@
+[test]
+172.24.0.2 ansible_user=test

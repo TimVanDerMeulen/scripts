@@ -1,0 +1,6 @@
+Can be called via ttools function XXX
+XXX can be:
+
+- create: to create a new function module
+- info: to print the module.info of the function modules or the info of the function if available
+- list: list all functions

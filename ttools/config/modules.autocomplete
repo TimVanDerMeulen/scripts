@@ -1,0 +1,28 @@
+# this file will be copied to the autocompletion folder for every module
+
+get_alias_name(){
+	echo "$(basename "${BASH_SOURCE[0]}")"
+}
+
+get_module_base_dir(){
+	local aliasPath="$(alias $1 | sed 's/alias.*=//')"
+	if [[ -f $aliasPath ]]; then
+		local aliasPath="$(basename $aliasPath)"
+	fi
+	echo "$(eval "cd $aliasPath" ; pwd)"
+}
+
+_functionCompletion() {
+	if [ ! $TTOOLS_BASE_FOLDER ]; then
+		return
+	fi
+	
+	local ALIAS_NAME="$(get_alias_name)"
+	local MODULE_BASE_DIR="$(get_module_base_dir $ALIAS_NAME)"
+
+	local functions="$($TTOOLS_BASE_FOLDER/functions/internal/listFunctions.sh $MODULE_BASE_DIR)"
+	local cur=${COMP_WORDS[COMP_CWORD]}
+    COMPREPLY=( $(compgen -W "$functions" -- $cur) )
+}
+
+complete -F _functionCompletion "$(get_alias_name)"

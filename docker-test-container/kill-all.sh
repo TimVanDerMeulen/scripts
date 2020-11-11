@@ -1,0 +1,1 @@
+docker ps | grep homelab | awk '{print $1}' | xargs -I {} docker kill {}

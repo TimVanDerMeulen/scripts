@@ -1,0 +1,20 @@
+touch internal/getLastCommandsExecuted.sh
+open internal/getLastCommandsExecuted.sh
+open
+cd ..
+./run.sh
+ls
+tree
+./run.sh
+open functions/add.sh.todo
+open ~/backup/backup-system.sh
+open functions/list.sh.todo
+mv functions/list.sh.todo functions/list.sh
+chmod +rwx functions/list.sh
+open run.sh
+rm run.sh
+open functions/list.sh
+open functions/add.sh.todo
+mv functions/add.sh.todo functions/add.sh
+chmod +rwx functions/add.sh
+open functions/add.sh

@@ -1,0 +1,55 @@
+##################################################################################
+#
+#                            installation script
+#
+##################################################################################
+
+#if [ "$(whoami)" != "root" ]; then
+# echo "started installation script as $(whoami)"
+# echo "root rights are needed to run this script!"
+# echo "restarting as root"
+# exec sudo "$0" "$@"
+#fi
+
+folderName="${PWD##*/}"
+aliasFile=~/.bash_aliases
+
+if [ -d ~/$folderName ]; then
+ echo "already installed"
+ exit 0
+fi
+
+if [ ! -f $aliasFile ]; then
+ touch $aliasFile
+fi
+
+echo "starting installation"
+
+echo "-> copying the folder $folderName to '~/'"
+cp -ra ../$folderName ~/
+
+echo "-> navigating into ~/$folderName"
+cd ~/$folderName
+
+customScripts="customScripts"
+if [ ! -d $customScripts ]; then
+ echo "-> adding $customScripts folder"
+ mkdir $customScripts
+fi
+if [ ! -f "$customScripts.bashrc" ]; then
+ echo "-> adding $customScripts list file"
+ touch $customScripts.bashrc
+fi
+
+
+#echo "-> setting read, write and execution rights on ~/$folderName"
+#sudo chmod 644 -R ./
+
+echo "-> register scripts as alias"
+echo "# custom scripts" >> $aliasFile
+echo "alias scripts=~/$folderName/scripts.bashrc" >> $aliasFile
+echo "source ~/$folderName/$customScripts.bashrc" >> $aliasFile
+
+echo "installation completed"
+
+exec bash # reload terminal

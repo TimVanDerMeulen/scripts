@@ -1,0 +1,1 @@
+$TTOOLS_INTERNAL_FUNCTIONS_FOLDER/listFunctions.sh $1
